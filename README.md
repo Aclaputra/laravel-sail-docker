@@ -1,6 +1,7 @@
 deployed laravel sail application using docker container to heroku -> https://evening-eyrie-58496.herokuapp.com/
 
 Requirements
+- Installed Heroku CLI
 - Installed Docker Engine for Linux OS, Docker Desktop for Windows OS
 - Installed php >=8.1 & composer >=2.3.7
 - No need XAMPP or installing apache mysql, etc. we will create Docker images for mysql-server, redis, alpine, sail and run all of them in the Docker containers instead (alternative for XAMPP, Laragon, or Valet for mac OS).
