@@ -1,64 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+deployed laravel sail application using docker container to heroku -> https://evening-eyrie-58496.herokuapp.com/
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Requirements
+- Installed Docker Engine for Linux OS, Docker Desktop for Windows OS
+- Installed php >=8.1 & composer >=2.3.7
+- No need XAMPP or installing apache mysql, etc. we will create Docker images for mysql-server, redis, alpine, sail and run all of them in the Docker containers instead (alternative for XAMPP, Laragon, or Valet for mac OS).
 
-## About Laravel
+## Stop Apache2 & MySQL
+Make sure to stop Apache2 & MySQL that running in the port background
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+for linux Ubuntu :
+```
+sudo systemctl status apache2 mysql
+sudo systemctl stop apache2 mysql
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Create Laravel Sail App
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Copy the example laravel sail file :
+```
+curl -s https://laravel.build/example-app | bash
+```
+Then run it using Sail :
+```
+cd example-app
+./vendor/bin/sail up
+```
+it will run on localhost:80 or http://localhost
 
-## Learning Laravel
+## create your Dockerfile
+```
+touch Dockerfile
+```
+Inside Dockerfile :
+```
+FROM php:8.0.5
+RUN apt-get update -y && apt-get install -y openssl zip unzip git
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN docker-php-ext-install pdo_mysql
+WORKDIR /app
+COPY . /app
+RUN composer update
+RUN composer install --optimize-autoloader --no-dev
+CMD php artisan serve --host=0.0.0.0 --port $PORT
+EXPOSE $PORT
+```
+## Build image, push it to Heroku Container Registry, & Release the image to your app
+Make sure you have a working Docker installation (eg. docker ps) and that you’re logged in to Heroku (heroku login).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Log in to Container Registry:
+```
+heroku container:login
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+heroku create
+heroku container:push web
+heroku container:release web
 
-## Laravel Sponsors
+heroku open
+```
+Done, It will be deployed to Heroku and redirect you to the endpoint url
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Easter egg :
+```
+php artisan inspire
+```
+learning resources :
+- Laravel official documentation for linux - https://laravel.com/docs/9.x#getting-started-on-linux
+- Heroku Dev Center - https://devcenter.heroku.com/articles/container-registry-and-runtime#:~:text=Heroku%20Container%20Registry%20allows%20you,yml.
