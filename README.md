@@ -24,7 +24,8 @@ curl -s https://laravel.build/example-app | bash
 Then run it using Sail :
 ```
 cd example-app
-./vendor/bin/sail up
+alias sail="./vendor/bin/sail"
+sail up
 ```
 it will run on localhost:80 or http://localhost
 
@@ -64,6 +65,36 @@ Easter egg :
 ```
 php artisan inspire
 ```
+
+Access artisan with sail :
+```
+alias sail="./vendor/bin/sail"
+
+sail artisan migrate
+sail artisan inspire
+sail artisan sail:publish
+```
+etc.
+
+Access mysql, redis, psql etc from a running docker container with sail:
+```
+sail mysql
+sail mariadb
+sail psql
+sail redis
+```
+```
+sail test
+sail npm ...
+sail tinker
+```
+etc.
+
+for more commands :
+```
+sail --help
+```
+
 learning resources :
 - Laravel official documentation for linux - https://laravel.com/docs/9.x#getting-started-on-linux
 - Heroku Dev Center - https://devcenter.heroku.com/articles/container-registry-and-runtime#:~:text=Heroku%20Container%20Registry%20allows%20you,yml.
