@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('posts', PostController::class)->middleware('user')->name('*', 'posts.crud');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-Route::get('/coba', [App\Http\Controllers\CobaController::class, 'Index']);
+require __DIR__.'/auth.php';
