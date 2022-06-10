@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\SasaranKerjaPegawai;
 
-class PostController extends Controller
+class SasaranKerjaPegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $data['skp'] = SasaranKerjaPegawai::orderBy('id', 'desc')->paginate(5);
+        return view('dashboard', $data);
     }
 
     /**
@@ -23,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -34,7 +36,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'nip' => 'required',
+            'jabatan' => 'required'
+        ]);
+        $skp = new SasaranKerjaPegawai;
+        $skp->nama = $request->nama;
+        $skp->nip = $request->nip;
+        $skp->jabatan = $request->jabatan;
+        $skp->save();
+        return redirect()->route('dashboard')->with('success', 'Sasaran Kerja Pegawai berhasil ditambahkan.');
     }
 
     /**

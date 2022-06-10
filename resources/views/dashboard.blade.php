@@ -68,41 +68,41 @@
                                         </thead>
                                         <tbody>
                                             <tr class="border-b">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">id</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    Mark
+                                                    skp nama
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    Otto
+                                                    skp nip
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    @mdo
+                                                    skp jabatan
                                                 </td>
                                             </tr>
-                                            <tr class="bg-white border-b">
+                                            <!-- <tr class="bg-white border-b">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    Jacob
+                                                    Martina mizuki
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    Thornton
+                                                    192737123
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    @fat
+                                                    Data Scientist
                                                 </td>
                                             </tr>
                                             <tr class="bg-white border-b">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    Larry
+                                                    Muhammad Acla
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    Wild
+                                                    197231231
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    @twitter
+                                                    Site Reliability Engineer
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
