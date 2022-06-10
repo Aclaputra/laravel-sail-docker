@@ -82,7 +82,13 @@
                                                 <td>
                                                     <a href="{{ url('pegawai/' . $data->id) }}">view</a>
                                                     <a href="{{ url('pegawai/' . $data->id . '/edit') }}">edit</a>
-                                                    <a href="{{ url('pegawai/' . $data->id) }}">delete</a>
+                                                    <!-- delete perlu buat form -->
+                                                    <!-- <a href="{{ url('pegawai/' . $data->id) }}">delete</a> -->
+                                                    <form action="{{ route('pegawai.destroy', $data->id) }}" method="Post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -112,17 +118,15 @@
                                             </tr> -->
                                         </tbody>
                                     </table>
+                                    <div class="m-6">
+                                        {!! $skp->links() !!}
+                                    </div>
                                 </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- end of table -->
-
-                    <div class="my-6 p-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error consequuntur assumenda repellat facere laborum consectetur, pariatur consequatur repudiandae sed! Veniam vel tempore quos quidem temporibus mollitia doloribus reprehenderit suscipit, aliquid voluptatibus non doloremque alias perspiciatis, reiciendis omnis modi provident, eum et. Cumque doloribus tempore voluptatibus assumenda nostrum fugit nulla? Eligendi rerum et modi quia ipsam eaque! Expedita vitae atque sunt non praesentium assumenda quam corrupti? Quae non placeat voluptatibus laudantium dignissimos itaque dolorem quos. Iste maiores quis dolor itaque neque!
-                    </div>
-
                 </div>
             </div>
         </div>

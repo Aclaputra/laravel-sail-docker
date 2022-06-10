@@ -55,9 +55,9 @@ class SasaranKerjaPegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(SasaranKerjaPegawai $pegawai)
     {
-        //
+        return view('show', compact('pegawai'));
     }
 
     /**
@@ -66,9 +66,9 @@ class SasaranKerjaPegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(SasaranKerjaPegawai $pegawai)
     {
-        //
+        return view('edit', compact('pegawai'));
     }
 
     /**
@@ -80,7 +80,17 @@ class SasaranKerjaPegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'nip' => 'required',
+            'jabatan' => 'required',
+        ]);
+        $skp = SasaranKerjaPegawai::find($id);
+        $skp->nama = $request->nama;
+        $skp->nip = $request->nip;
+        $skp->jabatan = $request->jabatan;
+        $skp->save();
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -89,8 +99,9 @@ class SasaranKerjaPegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SasaranKerjaPegawai $skp)
     {
-        //
+        $skp->delete();
+        return redirect()->route('pegawai.index');
     }
 }
