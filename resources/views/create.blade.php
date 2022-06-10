@@ -11,11 +11,12 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="my-4">
                         <h1 class="text-center my-2">Buat Data Sasaran Kerja Pegawai Baru</h1>
-                        <a href="{{ route('dashboard') }}">Back</a>
+                        <a href="{{ route('pegawai.index') }}">Back</a>
 
                         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
                             <!-- start of form -->
-                            <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group mb-6">
                                     <label for="exampleInputEmail1" class="form-label inline-block mb-2 text-gray-700">Nama</label>
                                     <input type="text" class="form-control

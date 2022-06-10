@@ -67,18 +67,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($skp as $data)
                                             <tr class="border-b">
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">id</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    skp nama
+                                                {{ $data->nama }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    skp nip
+                                                {{ $data->nip }}
                                                 </td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    skp jabatan
+                                                {{ $data->jabatan }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ url('pegawai/' . $data->id) }}">view</a>
+                                                    <a href="{{ url('pegawai/' . $data->id . '/edit') }}">edit</a>
+                                                    <a href="{{ url('pegawai/' . $data->id) }}">delete</a>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                             <!-- <tr class="bg-white border-b">
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">

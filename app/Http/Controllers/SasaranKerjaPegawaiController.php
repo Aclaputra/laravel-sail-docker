@@ -46,7 +46,7 @@ class SasaranKerjaPegawaiController extends Controller
         $skp->nip = $request->nip;
         $skp->jabatan = $request->jabatan;
         $skp->save();
-        return redirect()->route('dashboard')->with('success', 'Sasaran Kerja Pegawai berhasil ditambahkan.');
+        return redirect()->route('pegawai.index')->with('success', 'Sasaran Kerja Pegawai berhasil ditambahkan.');
     }
 
     /**
