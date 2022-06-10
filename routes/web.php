@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SasaranKerjaPegawaiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,13 +17,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/pegawai', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('pegawai.index');
 
 require __DIR__.'/auth.php';
 
-Route::get('/dashboard', [App\Http\Controllers\SasaranKerjaPegawaiController::class, 'Index'])->name('dashboard');
-Route::get('/create', [App\Http\Controllers\SasaranKerjaPegawaiController::class, 'create'])->name('create');
-Route::post('/create', [App\Http\Controllers\SasaranKerjaPegawaiController::class, 'store'])->name('store');
-// Route::resource('dashboard', App\Http\Controllers\SasaranKerjaPegawaiController::class)->name('*', 'dashboard');
+// Route::get('/dashboard', [App\Http\Controllers\SasaranKerjaPegawaiController::class, 'Index'])->name('dashboard');
+// Route::get('/create', [App\Http\Controllers\SasaranKerjaPegawaiController::class, 'create'])->name('create');
+// Route::post('/create', [App\Http\Controllers\SasaranKerjaPegawaiController::class, 'store'])->name('store');
+
+/**
+ * pegawai.index
+ * pegawai.create
+ * pegawai.store
+ * pegawai.show
+ * pegawai.edit
+ * pegawai.destroy
+ * pegawai.update
+ */
+Route::resource('pegawai', SasaranKerjaPegawaiController::class)
+    ->missing(function(Request $request) {
+        return redirect::route('pegawai.index');
+    });

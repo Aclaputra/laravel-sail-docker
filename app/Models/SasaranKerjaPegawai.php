@@ -17,6 +17,7 @@ class SasaranKerjaPegawai extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'nama',
         'nip',
         'jabatan',
