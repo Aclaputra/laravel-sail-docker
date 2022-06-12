@@ -99,9 +99,9 @@ class SasaranKerjaPegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SasaranKerjaPegawai $skp)
+    public function destroy(SasaranKerjaPegawai $pegawai)
     {
-        $skp->delete();
+        $pegawai->delete();
         return redirect()->route('pegawai.index');
     }
 }
