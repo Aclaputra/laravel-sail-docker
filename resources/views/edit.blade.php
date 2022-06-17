@@ -4,11 +4,11 @@
             {{ __('Dashboard') }} Pegawai
         </h2>
     </x-slot>
-   <h1> edit skp</h1>
+   <!-- <h1> edit skp</h1>
    <p>id : {{ $pegawai->id }}</p>
    <p>nama : {{ $pegawai->nama }}</p>
    <p>nip : {{ $pegawai->nip }}</p>
-   <p>jabatan : {{ $pegawai->jabatan }}</p>
+   <p>jabatan : {{ $pegawai->jabatan }}</p> -->
    <div class="m-12">
 
        <form action="{{ route('pegawai.update', $pegawai->id) }}" method="POST" enctype="multipart/form-data">

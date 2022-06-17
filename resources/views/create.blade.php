@@ -7,13 +7,13 @@
 
         <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="mt-4 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <!-- <div class="mt-4 bg-white overflow-hidden shadow-sm sm:rounded-lg"> -->
+                <!-- <div class="p-6 bg-white border-b border-gray-200"> -->
                     <div class="my-4">
                         <h1 class="text-center my-2">Buat Data Sasaran Kerja Pegawai Baru</h1>
-                        <a href="{{ route('pegawai.index') }}">Back</a>
+                        <a href="{{ route('pegawai.index') }}" class="m-4">Back</a>
 
-                        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                        <!-- <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm"> -->
                             <!-- start of form -->
                             <form action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -92,10 +92,10 @@
                                 ease-in-out">Submit</button>
                             </form>
                             <!-- end of form -->
-                        </div>
+                        <!-- </div> -->
                     </div>
-                </div>
-            </div>
+                <!-- </div> -->
+            <!-- </div> -->
         </div>
     </div>
 </x-app-layout>

@@ -80,14 +80,14 @@
                                                 {{ $data->jabatan }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ url('pegawai/' . $data->id) }}">view</a>
-                                                    <a href="{{ url('pegawai/' . $data->id . '/edit') }}">edit</a>
+                                                    <form method="POST" action="{{ route('pegawai.destroy', $data->id) }}">
+                                                        <a href="{{ url('pegawai/' . $data->id) }}">view</a>
+                                                        <a href="{{ url('pegawai/' . $data->id . '/edit') }}">edit</a>
                                                     <!-- delete perlu buat form -->
                                                     <!-- <a href="{{ url('pegawai/' . $data->id) }}">delete</a> -->
-                                                    <form action="{{ route('pegawai.destroy', $data->id) }}" method="Post">
-                                                        @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="">Delete</button>
+                                                        @csrf
+                                                        <input class="btn btn-danger" type="submit" value="Delete" />
                                                     </form>
                                                 </td>
                                             </tr>
